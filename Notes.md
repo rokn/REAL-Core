@@ -1,8 +1,8 @@
-***Notes***
+##Notes##
 
-**Creating a new project for running the core**
+###Creating a new project for running the core###
 
-*Add to the csproj*
+####Add to the csproj####
 1. In the PropertyGroup tag :
 ```xml
 <MonoGamePlatform>Windows</MonoGamePlatform>
