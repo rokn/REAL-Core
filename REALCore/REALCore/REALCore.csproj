@@ -45,6 +45,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Component.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="EntityWorld.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Input.cs" />
+    <Compile Include="Prefab.cs" />
     <Compile Include="REALGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
