@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace REALCore
@@ -8,10 +9,12 @@ namespace REALCore
 		#region Fields
 
 		private readonly Dictionary<string, Component> _components;
-
+		private bool _started;
 		#endregion
 
 		#region Constructors
+
+		public event EventHandler StartEvent;
 
 		static Entity()
 		{
@@ -22,21 +25,51 @@ namespace REALCore
 		///     Creates a new entity with no components
 		/// </summary>
 		public Entity()
+			: this("Unnamed")
 		{
+		}
+
+		public Entity(string name)
+			: this(name, "Misc")
+		{
+		}
+
+		public Entity(string name, string layer)
+		{
+			Name = name;
 			_components = new Dictionary<string, Component>();
 			Id = IdCount++;
 			Tag = "Untagged";
+
+			var myLayer = WorldLayer.GetLayer(layer);
+
+			Layer = myLayer?.Id ?? 1;
 		}
 
 		#endregion
 
 		#region Properties
 
+		public string Name { get; set; }
 		public static uint IdCount { get; private set; }
 		public uint Id { get; }
 		public string Tag { get; set; }
 		public EntityWorld World { get; set; }
-		public bool Started { get; set; }
+
+		public bool Started
+		{
+			get { return _started; }
+			set
+			{
+				_started = value;
+
+				if(value)
+				{
+					OnStartEvent();
+				}
+			}
+		}
+		public uint Layer { get; set; }
 
 		#endregion
 
@@ -123,6 +156,11 @@ namespace REALCore
 			}
 
 			World.RemoveEntity(this);
+		}
+
+		protected virtual void OnStartEvent()
+		{
+			StartEvent?.Invoke(this, EventArgs.Empty);
 		}
 	}
 }

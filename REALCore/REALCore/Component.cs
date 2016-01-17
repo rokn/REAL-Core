@@ -2,36 +2,31 @@
 {
 
 	#region Component Interfaces
-
-	public interface IComponent
-	{
-		Entity Entity{ get; set; }
-		EntityWorld World{ get; set; }
-
-		void Start();
-		void Destroy();
-	}
-
-	public interface IUpdateableComponent : IComponent
-	{
-		void Update();
-	}
-
-	public interface IDrawableComponent : IComponent
-	{
-		int DrawLayer { get; set; }
-		bool Draw();
-	}
-
-	public interface IGuiDrawableComponent : IComponent
-	{
-		int GuiDrawLayer { get; set; }
-		void GuiDraw();
-	}
+//
+//	public interface IComponent
+//	{
+//		Entity Entity{ get; set; }
+//		EntityWorld World{ get; set; }
+//
+//		void Start();
+//		void Destroy();
+//	}
+//
+//	public interface IUpdateableComponent : IComponent
+//	{
+//	}
+//
+//	public interface IDrawableComponent : IComponent
+//	{
+//	}
+//
+//	public interface IGuiDrawableComponent : IComponent
+//	{
+//	}
 
 	#endregion
 
-	public class Component : IComponent
+	public abstract class Component
 	{
 		#region Properties
 
@@ -46,8 +41,22 @@
 		{
 		}
 
+		public virtual void Update()
+		{
+		}
+
 		public virtual void Destroy()
 		{
+		}
+
+		public virtual bool Draw()
+		{
+			return false;
+		}
+
+		public virtual void GuiDraw()
+		{
+			
 		}
 
 		#endregion

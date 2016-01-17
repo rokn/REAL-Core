@@ -19,3 +19,8 @@
     ``'
     <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
     ```
+
+
+###Find out about the content not copying and building strangely 
+
+Try out some generation
