@@ -16,7 +16,7 @@
     </ItemGroup>
     ```
 3. At the end before closing tag :<br> 
-    ``'
+    ```
     <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
     ```
 
@@ -24,3 +24,7 @@
 ###Find out about the content not copying and building strangely 
 
 Try out some generation
+
+### Content building with MGCB : 
+
+```MGCB.exe /@:"./Content.mgcb"```
